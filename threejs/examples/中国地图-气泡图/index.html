@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中国地图</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="tag"
+      style="
+        position: absolute;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 6px 16px;
+        border-radius: 5px;
+        top: 30px;
+        left: 70px;
+      "
+    >
+      <div>
+        <span>城市：</span>
+        <span id="city" style="color: #00ffff">郑州</span>
+      </div>
+      <div
+        style="
+          height: 1px;
+          background: rgb(190, 190, 190);
+          margin-top: 4px;
+          margin-bottom: 4px;
+        "
+      ></div>
+      <div>
+        <span>PM2.5：</span>
+        <span id="pm" style="color: #00ffff">19</span>
+      </div>
+    </div>
+
+    <script src="../../build/three.js"></script>
+    <script src="../js/libs/stats.min.js"></script>
+    <script src="../js/controls/OrbitControls.js"></script>
+    <script src="../js/renderers/CSS2DRenderer.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+import  Delaunator  from './delaunator.js'; //开源三角剖分库
+import { pointInPolygon } from './pointInPolygon.js'; //开源，判断点是否在多边形中
+
+/**
+ * 三角形剖分
+ * @param {*} points 等间距点集合
+ * @param {*} polygon 多边形轮廓
+ */
+function delaunay(pointsArr, polygon) {
+  let indexArr = Delaunator.from(pointsArr).triangles;
+
+  /**三角剖分获得的三角形索引indexArr需要进行二次处理，删除多边形polygon轮廓外面的三角形对应索引 */
+  let usefulIndexArr = [];//二次处理后三角形索引，也就是保留多边形polygon内部三角形对应的索引
+  // 删除多边形polygon外面三角形，判断方法非常简单，判断一个三角形的质心是否在多边形轮廓内部
+  for (let i = 0; i < indexArr.length; i += 3) {
+    // 三角形三个顶点坐标p1, p2, p3
+    let p1 = pointsArr[indexArr[i]];
+    let p2 = pointsArr[indexArr[i+1]];
+    let p3 = pointsArr[indexArr[i+2]];
+    // 三角形重心坐标计算
+    let point = [(p1[0] + p2[0] + p3[0]) / 3, (p1[1] + p2[1] + p3[1]) / 3];
+    if (pointInPolygon(point, polygon)) {//pointInPolygon()函数判断三角形的重心是在多边形polygon内
+      // 保留复合条件三角形对应的索引：indexArr[i], indexArr[i+1],indexArr[i+2]
+      // usefulIndexArr.push(indexArr[i], indexArr[i+1],indexArr[i+2]);//这种情况需要设置three.js材质背面可见THREE.BackSide才能看到球面国家Mesh
+      // 有一点需要注意，一个三角形索引逆时针和顺时针顺序对应three.js三角形法线方向相反，或者说Mesh正面、背面方向不同
+      usefulIndexArr.push(indexArr[i+2], indexArr[i+1], indexArr[i]);
+    }
+  }
+  return usefulIndexArr;
+}
+
+export {
+  delaunay
+};
