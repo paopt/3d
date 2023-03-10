@@ -8,7 +8,7 @@ function createSphere(r) {
   const material = new THREE.MeshLambertMaterial( {
     color: 0x000909,
     transparent: true,
-    // opacity: 0.5
+    opacity: 0.5
   } );
   const sphere = new THREE.Mesh( geometry, material );
   return sphere;

@@ -3,7 +3,7 @@ const scene = new THREE.Scene();
 const width = window.innerWidth; //窗口宽度
 const height = window.innerHeight; //窗口高度
 const k = width / height; //窗口宽高比
-const s = 1; //根据包围盒大小(行政区域经纬度分布范围大小)设置渲染范围
+const s = 1.5; //根据包围盒大小(行政区域经纬度分布范围大小)设置渲染范围
 //创建相机对象
 const camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
 camera.position.set(116.469, 40.252, 200); //沿着z轴观察
@@ -87,7 +87,7 @@ function drawMap(data) {
     drawLine(coordinates);
   });
 
-  // getBox();
+  getBox();
 }
 
 // 查看包围盒大小

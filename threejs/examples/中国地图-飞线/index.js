@@ -368,7 +368,7 @@ function aniamteFly(index) {
     geometry.setPositions(positions);
 		geometry.setColors( colors );
     matLine = new THREE.LineMaterial( {
-      linewidth: 2,
+      linewidth: 3,
       vertexColors: true,
     });
     matLine.resolution.set( window.innerWidth, window.innerHeight ); // resolution of the inset viewport
@@ -382,7 +382,6 @@ function aniamteFly(index) {
 function updateFly(index) {
   flyGroup.children.forEach(fly => {
     const points = fly.points.slice(index, num + index + 1);
-    console.log(points.length);
     const curve = new THREE.CatmullRomCurve3(points);
     const arr = curve.getPoints(100);
     const positions = [];

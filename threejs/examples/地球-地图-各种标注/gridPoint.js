@@ -8,9 +8,9 @@ function createGridPoint(data) {
     lonArr.push(item[0]);
     latArr.push(item[1]);
   });
-  const {lonMin, lonMax} = getMinMax(lonArr);
-  const {latMin, latMax} = getMinMax(latArr);
-  const sep = 3;
+  const {min: lonMin, max: lonMax} = getMinMax(lonArr);
+  const {min: latMin, max: latMax} = getMinMax(latArr);
+  const sep = 2;
   const rows = Math.ceil((latMax - latMin) / sep) + 1;
   const cols = Math.ceil((lonMax - lonMin) / sep) + 1;
   const points = [];

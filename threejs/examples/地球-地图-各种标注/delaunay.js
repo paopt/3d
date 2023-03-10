@@ -8,7 +8,7 @@ import { pointInPolygon } from './pointInPolygon.js'; //开源，判断点是否
  */
 function delaunay(pointsArr, polygon) {
   let indexArr = Delaunator.from(pointsArr).triangles;
-
+ 
   /**三角剖分获得的三角形索引indexArr需要进行二次处理，删除多边形polygon轮廓外面的三角形对应索引 */
   let usefulIndexArr = [];//二次处理后三角形索引，也就是保留多边形polygon内部三角形对应的索引
   // 删除多边形polygon外面三角形，判断方法非常简单，判断一个三角形的质心是否在多边形轮廓内部
